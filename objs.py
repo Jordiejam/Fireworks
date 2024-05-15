@@ -1,7 +1,6 @@
 import pygame
 import random
 from copy import copy
-import math
 
 class Firework():
     
@@ -21,7 +20,6 @@ class Firework():
         self.trail = []
 
         self.exploded = False
-
 
     def update(self):
         if not self.exploded:
@@ -51,15 +49,13 @@ class Firework():
     def show(self):
         if not self.exploded:
             for i, pos in enumerate(self.trail):
-                # Calculate fading colour based on trail position
-                fade_amount = (i + 1) / (self.max_trail + 1)  # Adjust fade_amount so the final particle isn't black
+                fade_amount = (i + 1) / (self.max_trail + 1)
                 faded_colour = tuple(int(c * fade_amount) for c in self.colour)
                 pygame.draw.circle(self.screen, faded_colour, pos, self.size)
             pygame.draw.circle(self.screen, self.colour, self.pos, self.size)
         else:
             for p in self.particles:
                 p.show()
-
 
 class Particle():
 
@@ -99,7 +95,6 @@ class Particle():
         else:
             self.complete = True
             self.size = 0
-
 
     def show(self):
         
