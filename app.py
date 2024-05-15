@@ -6,17 +6,16 @@ from objs import *
 # Initialize Pygame
 pygame.init()
 
-# Constants for screen dimensions
 WIDTH = 800
 HEIGHT = 600
-
-# Set up the display
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
 pygame.display.set_caption("Bonfire Night")
 clock = pygame.time.Clock()
 
 fireworks:list[Firework] = []
+
+font = pygame.font.SysFont("Arial", 12)
 
 # Main game loop
 running = True
@@ -41,9 +40,13 @@ while running:
         if fireworks[i].explode():
             if not fireworks[i].particles:
                 fireworks.remove(fireworks[i])
+    
+    framerate = str(int(clock.get_fps()))
+    text = font.render(framerate, True, (255, 255, 255))
+    screen.blit(text, (10, 10))
 
     pygame.display.flip()
-    pygame.time.Clock().tick(60)
+    clock.tick(60)
 
 pygame.quit()
 sys.exit()

@@ -19,6 +19,8 @@ class Firework():
         self.particles = []
         self.trail = []
 
+        self.firework_explosion_sound = pygame.mixer.Sound("assets\\single-firework-79814.wav")
+
         self.exploded = False
 
     def update(self):
@@ -41,6 +43,7 @@ class Firework():
             if not self.exploded:
                 if random.random() < 0.1:
                     self.exploded = True
+                    self.firework_explosion_sound.play()
                     self.particles = [Particle(self) for _ in range(20)]
         
         if self.exploded:
