@@ -29,12 +29,11 @@ while running:
             if event.key == pygame.K_ESCAPE:
                 running = False
 
-    screen.fill((0, 0, 0))  # Fill the screen with black
+    screen.fill((0, 0, 0))
 
-    # Game logic goes here
+    # Game logic
     if random.random() < 0.04:
         fireworks.append(Firework(screen))
-    
 
     for i in range(len(fireworks)-1, -1, -1):
         fireworks[i].update()
@@ -43,12 +42,8 @@ while running:
             if not fireworks[i].particles:
                 fireworks.remove(fireworks[i])
 
-
-
-
     pygame.display.flip()
     pygame.time.Clock().tick(60)
 
-# Clean up and quit
 pygame.quit()
 sys.exit()
